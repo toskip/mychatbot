@@ -1,0 +1,206 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  font-family: 'Arial', sans-serif;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.settingsPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  animation-duration: 0.5s;
+  animation-fill-mode:forwards;
+}
+.settingsPopup.fadeIn {
+  animation-name: fadeIn;
+  display: block; /* Ensure the popup is displayed during the fade-in animation */
+}
+
+.settingsPopup.fadeOut {
+  animation-name:fadeOut;
+}
+.settingsPopup.default {
+  display: none;
+}
+
+
+.settingsPopup label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.settingsPopup textarea {
+  width: calc(100% - 20px);
+  height: 100px;
+  margin-top: 5px;
+}
+
+.settingsPopup input[type="range"] {
+  width: 100%;
+  margin-top: 5px;
+}
+.popupButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; /* Add some space above the buttons */
+}
+.emojiButton {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0 5px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+.ChatWindow {
+  width: 80%;
+  height: 600px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+.message {
+  display: flex;
+  align-items: flex-start; 
+  margin: 10px;
+  justify-content: flex-end; 
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.message.assistant {
+  justify-content: flex-start;
+}
+
+.message .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0px 0 0 0; 
+  align-self: flex-start; 
+}
+
+.message.user .avatar {
+  margin-left: 10px;
+}
+
+.message.assistant .avatar {
+  margin-right: 10px;
+}
+
+.message .text {
+  padding: 10px; 
+  border-radius: 18px;
+  word-wrap: break-word;
+  
+  
+}
+.message.user .text {
+  background-color: #dcf8c6;
+  text-align: right;
+}
+
+.message.assistant .text {
+  background-color: #e5e5ea;
+  text-align: left;
+}
+
+
+
+
+.InputArea {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding-bottom: 20px;
+}
+
+.InputArea textarea {
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none; /* Removes the default focus outline */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+  font-size: 16px; /* Increases the font size for better readability */
+  line-height: 1.5; /* Adjusts line spacing for better readability */
+  resize: vertical; /* Allows only vertical resizing */
+}
+
+.InputArea textarea:focus {
+  border-color: #007bff; /* Changes border color when focused */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Adds a glow effect on focus */
+}
+.InputArea button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.InputArea button:hover {
+  background-color: #0056b3;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+
+}

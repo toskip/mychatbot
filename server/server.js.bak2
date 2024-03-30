@@ -1,0 +1,40 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const { OpenAI } = require('openai');
+
+const openai = new OpenAI({
+    baseURL: 'https://donator.sweethoney.buzz/proxy/azure/openai/',
+    apiKey: 'd05acc80-0dd0-4a5a-b62c-921eb73ebe95',
+  
+  }
+  );
+  
+const app = express();
+app.use(bodyParser.json());
+
+const PORT = process.env.PORT || 5000;
+app.post('/chatbot', async (req, res) => {
+    // Ensure there is a message to send
+    if (!req.body.message) {
+      return res.status(400).send('No message provided.');
+    }
+  
+    try {
+        const stream = await openai.chat.completions.create({
+            model: 'gpt-4-1106-preview',
+            messages: [{ role: 'user', content: req.body.message }],
+            stream: true,
+          });
+          for await (const chunk of stream) {
+            process.stdout.write(chunk.choices[0]?.delta?.content || '');
+          }
+    } catch (error) {
+      console.error('Error with Chat Completion: ', error);
+      res.status(500).send('Error processing the chat completion.');
+    }
+  });
+
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+  
